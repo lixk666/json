@@ -1,4 +1,4 @@
-package com.lxk.test.fastjson;
+package com.lxk.test.consumer;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lxk.test.bean.SecurityPolicyLog;
@@ -9,9 +9,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import java.util.Collections;
 import java.util.Properties;
 
-
-public class FastjsonTest {
-    @SuppressWarnings("all")
+public class Consumer {
     public static void main(String[] args) {
 
         Properties props = new Properties();
@@ -41,7 +39,6 @@ public class FastjsonTest {
                 //System.out.println("records count:"+records.count());
                 for(ConsumerRecord<String, String> record : records) {
                     String value = record.value();
-                    //TODO Json转对象
                     SecurityPolicyLog securityPolicyLog = JSONObject.parseObject(value, SecurityPolicyLog.class);
                     System.out.println(securityPolicyLog.toString());
                     //System.out.println(record.value());
